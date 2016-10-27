@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, abort
+from BIRD import bird
 app = Flask(__name__)
 
 sessions = [
@@ -18,7 +19,7 @@ sessions = [
 
 @app.route("/api/session/all", methods=['GET'])
 def get_all_session():
-    return jsonify({"sessions":sessions})
+    return jsonify({"sessions":bird.greetings("andrea")})
 
 @app.route("/api/session/<int:session_id>", methods=['GET'])
 def get_single_session(session_id):
