@@ -1,9 +1,8 @@
 import subprocess, re
 def all_bgp_session():
-    #output = subprocess.Popen(["/usr/local/sbin/birdc", "show protocols all"], stdout=subprocess.PIPE).communicate()[0]
     sessions = []
-    with open('/Users/beccaris/topix/software/birdy/BIRD/summary.txt', 'r') as file_in:
-        for line in file_in:
+    output = subprocess.Popen(["/usr/local/sbin/birdc", "show protocols all"], stdout=subprocess.PIPE).communicate()[0]
+        for line in output:
             object_parsed = re.match( r'^(\w+)\s+BGP\s+(\w+)\s+(\w+)\s+([0-9\-\:]+)\s+(\w+).*$', line, re.M|re.I)
             if object_parsed:
                 s = {}
