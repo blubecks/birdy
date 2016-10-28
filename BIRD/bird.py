@@ -1,29 +1,26 @@
-import subprocess
-template = """
-BIRD 1.6.2 ready.
-name     proto    table    state  since       info
-device1  Device   master   up     2016-10-24 16:24:28
-  Preference:     240
-  Input filter:   ACCEPT
-  Output filter:  REJECT
-  Routes:         0 imported, 0 exported, 0 preferred
-  Route change stats:     received   rejected   filtered    ignored   accepted
-    Import updates:              0          0          0          0          0
-    Import withdraws:            0          0        ---          0          0
-    Export updates:              0          0          0        ---          0
-    Export withdraws:            0        ---        ---        ---          0
-
-PIPE_DIGISAT Pipe     master   up     2016-10-24 16:24:28  => TABLE_DIGISAT
-  Preference:     70
-  Input filter:   (unnamed)
-  Output filter:  (unnamed)
-  Routes:         1 imported, 13 exported
-  Route change stats:     received   rejected   filtered    ignored   accepted
-    Import updates:             76         71          0          4          1
-    Import withdraws:           13          0        ---          0          0
-    Export updates:             81          5          5         45         26
-    Export withdraws:           13          0        ---          4         13
-    """
-def greetings(name):
+import subprocess, re
+def all_bgp_session():
     #output = subprocess.Popen(["/usr/local/sbin/birdc", "show protocols all"], stdout=subprocess.PIPE).communicate()[0]
-    print template
+    sessions = []
+    with open('/Users/beccaris/topix/software/birdy/BIRD/summary.txt', 'r') as file_in:
+        for line in file_in:
+            object_parsed = re.match( r'^(\w+)\s+BGP\s+(\w+)\s+(\w+)\s+([0-9\-\:]+)\s+(\w+).*$', line, re.M|re.I)
+            if object_parsed:
+                s = {}
+                s['name'] = object_parsed.group(1)
+                s['table'] = object_parsed.group(2)
+                s['bird_protocol'] = 'BGP'
+                s['connection'] = object_parsed.group(3)
+                s['state_change'] = object_parsed.group(4)
+                sessions.append(s)
+            object_parsed = re.match( r'^\s+BGP state:\s+(\w+)\s*$', line, re.M|re.I)
+            if object_parsed:
+                s['bgp_info'] = {}
+                s['bgp_info']['bgp_state'] = object_parsed.group(1)
+            object_parsed = re.match( r'^\s+Neighbor address:\s+([^\s]+)\s*$', line, re.M|re.I)
+            if object_parsed:
+                s['bgp_info']['neighbor_address'] = object_parsed.group(1)
+            object_parsed = re.match( r'^\s+Neighbor AS:\s+([\d]+)\s*$', line, re.M|re.I)
+            if object_parsed:
+                s['bgp_info']['neighbor_as'] = object_parsed.group(1)
+    return sessions

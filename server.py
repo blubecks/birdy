@@ -19,7 +19,7 @@ sessions = [
 
 @app.route("/api/session/all", methods=['GET'])
 def get_all_session():
-    return jsonify({"sessions":bird.greetings("andrea")})
+    return jsonify({"sessions":bird.all_bgp_session()})
 
 @app.route("/api/session/<int:session_id>", methods=['GET'])
 def get_single_session(session_id):
