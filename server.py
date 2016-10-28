@@ -1,6 +1,10 @@
 from flask import Flask, jsonify, abort
-from BIRD import bird
+from BIRD.bird import Bird
+
 app = Flask(__name__)
+app.config.from_pyfile('birdy.cfg')
+bird = Bird(app)
+
 
 sessions = [
     {
