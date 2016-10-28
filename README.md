@@ -9,6 +9,7 @@ Birdy is under development.
 2.  Create a virtualenv in order to keep the birdy's env as cleas as possible.
 3.  Install the requirements.
 4.  Rename the `example.birdy.cfg` to `birdy.cfg` and edit it as you need.
+
         $ virtualenv env
         $ source env/bin/activate
         $ pip install -r requirements.txt
