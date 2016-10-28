@@ -1,0 +1,188 @@
+BIRD 1.6.2 ready.
+name     proto    table    state  since       info
+device1  Device   master   up     2016-10-24 16:24:28  
+  Preference:     240
+  Input filter:   ACCEPT
+  Output filter:  REJECT
+  Routes:         0 imported, 0 exported, 0 preferred
+  Route change stats:     received   rejected   filtered    ignored   accepted
+    Import updates:              0          0          0          0          0
+    Import withdraws:            0          0        ---          0          0
+    Export updates:              0          0          0        ---          0
+    Export withdraws:            0        ---        ---        ---          0
+
+PIPE_DIGISAT Pipe     master   up     2016-10-24 16:24:28  => TABLE_DIGISAT
+  Preference:     70
+  Input filter:   (unnamed)
+  Output filter:  (unnamed)
+  Routes:         1 imported, 13 exported
+  Route change stats:     received   rejected   filtered    ignored   accepted
+    Import updates:             76         71          0          4          1
+    Import withdraws:           13          0        ---          0          0
+    Export updates:             81          5          5         45         26
+    Export withdraws:           13          0        ---          4         13
+
+PIPE_EQUATION Pipe     master   up     2016-10-24 16:24:28  => TABLE_EQUATION
+  Preference:     70
+  Input filter:   (unnamed)
+  Output filter:  (unnamed)
+  Routes:         3 imported, 11 exported
+  Route change stats:     received   rejected   filtered    ignored   accepted
+    Import updates:             76         55          0         12          9
+    Import withdraws:           13          0        ---          0          6
+    Export updates:             81         21          5         37         18
+    Export withdraws:           13          0        ---          4          7
+
+PIPE_OXYMIUM Pipe     master   up     2016-10-24 16:24:28  => TABLE_OXYMIUM
+  Preference:     70
+  Input filter:   (unnamed)
+  Output filter:  (unnamed)
+  Routes:         1 imported, 7 exported
+  Route change stats:     received   rejected   filtered    ignored   accepted
+    Import updates:             40         35          0          4          1
+    Import withdraws:            7          0        ---          0          0
+    Export updates:             81          5         41         21         14
+    Export withdraws:           13          0        ---         34          7
+
+PIPE_NICEBLUE Pipe     master   up     2016-10-24 16:24:28  => TABLE_NICEBLUE
+  Preference:     70
+  Input filter:   (unnamed)
+  Output filter:  (unnamed)
+  Routes:         3 imported, 8 exported
+  Route change stats:     received   rejected   filtered    ignored   accepted
+    Import updates:             73         58          0         12          3
+    Import withdraws:           13          0        ---          0          0
+    Export updates:             81         15          8         37         21
+    Export withdraws:           13          0        ---          4         13
+
+PIPE_BBBELL Pipe     master   up     2016-10-24 16:24:28  => TABLE_BBBELL
+  Preference:     70
+  Input filter:   (unnamed)
+  Output filter:  (unnamed)
+  Routes:         7 imported, 8 exported
+  Route change stats:     received   rejected   filtered    ignored   accepted
+    Import updates:             84         46          3         21         14
+    Import withdraws:           13          0        ---          2          7
+    Export updates:             81         35          0         32         14
+    Export withdraws:           13          0        ---          0          6
+
+DIGISAT  BGP      TABLE_DIGISAT up     2016-10-24 16:26:26  Established   
+  Description:    digisat
+  Preference:     100
+  Input filter:   ACCEPT
+  Output filter:  ACCEPT
+  Import limit:   1000
+    Action:       disable
+  Routes:         1 imported, 13 exported, 5 preferred
+  Route change stats:     received   rejected   filtered    ignored   accepted
+    Import updates:              3          0          0          2          1
+    Import withdraws:            0          0        ---          0          0
+    Export updates:             48          3          0        ---         45
+    Export withdraws:           13        ---        ---        ---         15
+  BGP state:          Established
+    Neighbor address: 10.49.0.210
+    Neighbor AS:      198240
+    Neighbor ID:      10.49.0.210
+    Neighbor caps:    refresh restart-aware AS4
+    Session:          external route-server AS4
+    Source address:   10.49.0.218
+    Route limit:      1/1000
+    Hold timer:       134/180
+    Keepalive timer:  18/60
+
+EQUATION BGP      TABLE_EQUATION up     2016-10-26 17:13:08  Established   
+  Description:    equation
+  Preference:     100
+  Input filter:   ACCEPT
+  Output filter:  ACCEPT
+  Import limit:   1000
+    Action:       disable
+  Routes:         3 imported, 11 exported, 12 preferred
+  Route change stats:     received   rejected   filtered    ignored   accepted
+    Import updates:              3          0          0          0          3
+    Import withdraws:            0          0        ---          0          0
+    Export updates:             14          3          0        ---         11
+    Export withdraws:            0        ---        ---        ---          0
+  BGP state:          Established
+    Neighbor address: 10.49.0.211
+    Neighbor AS:      41090
+    Neighbor ID:      10.49.0.211
+    Neighbor caps:    refresh restart-aware AS4
+    Session:          external route-server AS4
+    Source address:   10.49.0.218
+    Route limit:      3/1000
+    Hold timer:       108/180
+    Keepalive timer:  4/60
+
+OXYMIUM  BGP      TABLE_OXYMIUM up     2016-10-24 16:26:24  Established   
+  Description:    oxymium
+  Preference:     100
+  Input filter:   ACCEPT
+  Output filter:  ACCEPT
+  Import limit:   1000
+    Action:       disable
+  Routes:         1 imported, 7 exported, 3 preferred
+  Route change stats:     received   rejected   filtered    ignored   accepted
+    Import updates:              3          0          0          2          1
+    Import withdraws:            0          0        ---          0          0
+    Export updates:             24          3          0        ---         21
+    Export withdraws:            7        ---        ---        ---          9
+  BGP state:          Established
+    Neighbor address: 10.49.0.212
+    Neighbor AS:      41157
+    Neighbor ID:      10.49.0.212
+    Neighbor caps:    refresh restart-aware AS4
+    Session:          external route-server AS4
+    Source address:   10.49.0.218
+    Route limit:      1/1000
+    Hold timer:       140/180
+    Keepalive timer:  9/60
+
+NICEBLUE BGP      TABLE_NICEBLUE up     2016-10-24 16:26:22  Established   
+  Description:    niceblue
+  Preference:     100
+  Input filter:   ACCEPT
+  Output filter:  ACCEPT
+  Import limit:   1000
+    Action:       disable
+  Routes:         3 imported, 8 exported, 15 preferred
+  Route change stats:     received   rejected   filtered    ignored   accepted
+    Import updates:              9          0          0          6          3
+    Import withdraws:            0          0        ---          0          0
+    Export updates:             45          9          0        ---         36
+    Export withdraws:           13        ---        ---        ---         19
+  BGP state:          Established
+    Neighbor address: 10.49.0.213
+    Neighbor AS:      59699
+    Neighbor ID:      10.49.0.213
+    Neighbor caps:    refresh restart-aware AS4
+    Session:          external route-server AS4
+    Source address:   10.49.0.218
+    Route limit:      3/1000
+    Hold timer:       142/180
+    Keepalive timer:  2/60
+
+BBBELL   BGP      TABLE_BBBELL up     2016-10-24 16:42:21  Established   
+  Description:    bbbell
+  Preference:     100
+  Input filter:   ACCEPT
+  Output filter:  ACCEPT
+  Import limit:   1000
+    Action:       disable
+  Routes:         8 imported, 8 exported, 43 preferred
+  Route change stats:     received   rejected   filtered    ignored   accepted
+    Import updates:             16          0          0          8          8
+    Import withdraws:            0          0        ---          0          0
+    Export updates:             38         16          0        ---         22
+    Export withdraws:            6        ---        ---        ---         14
+  BGP state:          Established
+    Neighbor address: 10.49.0.214
+    Neighbor AS:      34606
+    Neighbor ID:      10.49.0.214
+    Neighbor caps:    refresh restart-aware AS4
+    Session:          external route-server AS4
+    Source address:   10.49.0.218
+    Route limit:      8/1000
+    Hold timer:       157/180
+    Keepalive timer:  26/60
+
