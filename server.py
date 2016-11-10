@@ -15,6 +15,7 @@ def get_single_session(session_id):
     abort(404)
 
 @app.route("/api/configure/session", methods=['POST'])
+def add_config():
     print request.args
 
 
