@@ -18,6 +18,7 @@ def get_single_session(session_id):
 @app.route("/api/configure/session", methods=['POST'])
 def add_config():
     print request.args
+    return jsonify({"ok":"ok"})
 
 
 
