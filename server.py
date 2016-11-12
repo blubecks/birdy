@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, abort, request
+from flask import Flask, jsonify, abort, request, render_template, send_from_directory
 from BIRD.bird import Bird
 import json
 
@@ -24,6 +24,15 @@ def add_config():
     data_dict = json.loads(data)
     return jsonify(bird.configure_new_session(data_dict))
 
+
+@app.route("/", methods=['GET'])
+def get_home():
+    return render_template('index.html')
+
+
+@app.route('/static/<path:path>')
+def send_static(path):
+    return send_from_directory('static', path)
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0')

@@ -8,6 +8,8 @@ class Bird(object):
         self.app = {
             'bird_instance': app.config['BIRDC_INSTANCE'],
             'bird_v6_instance': app.config['BIRDC6_INSTANCE'],
+            'bird_config_file': app.config['BIRD_CONFIG_FILE'],
+            'bird_config_file_ipv6':app.config['BIRD_CONFIG_FILE_IPV6'],
             'secret_key': app.config['SECRET_KEY'],
             'debug': app.config['DEBUG']
         }
@@ -61,10 +63,10 @@ class BirdException(Exception):
 
 '''
 as
-name
+nome
 ip
-[11/11/2016, 10:52:24] Enrico Pellegrini: ixtype
-[11/11/2016, 10:52:27] Enrico Pellegrini: asexport
-[11/11/2016, 10:52:30] Enrico Pellegrini: maxpref
-[11/11/2016, 10:52:36] Enrico Pellegrini: custom_commands
+ixtype
+asexport
+maxpref
+custom_commands
 '''
