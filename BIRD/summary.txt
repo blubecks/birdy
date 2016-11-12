@@ -11,63 +11,8 @@ device1  Device   master   up     2016-10-24 16:24:28
     Export updates:              0          0          0        ---          0
     Export withdraws:            0        ---        ---        ---          0
 
-PIPE_DIGISAT Pipe     master   up     2016-10-24 16:24:28  => TABLE_DIGISAT
-  Preference:     70
-  Input filter:   (unnamed)
-  Output filter:  (unnamed)
-  Routes:         1 imported, 13 exported
-  Route change stats:     received   rejected   filtered    ignored   accepted
-    Import updates:             76         71          0          4          1
-    Import withdraws:           13          0        ---          0          0
-    Export updates:             81          5          5         45         26
-    Export withdraws:           13          0        ---          4         13
-
-PIPE_EQUATION Pipe     master   up     2016-10-24 16:24:28  => TABLE_EQUATION
-  Preference:     70
-  Input filter:   (unnamed)
-  Output filter:  (unnamed)
-  Routes:         3 imported, 11 exported
-  Route change stats:     received   rejected   filtered    ignored   accepted
-    Import updates:             76         55          0         12          9
-    Import withdraws:           13          0        ---          0          6
-    Export updates:             81         21          5         37         18
-    Export withdraws:           13          0        ---          4          7
-
-PIPE_OXYMIUM Pipe     master   up     2016-10-24 16:24:28  => TABLE_OXYMIUM
-  Preference:     70
-  Input filter:   (unnamed)
-  Output filter:  (unnamed)
-  Routes:         1 imported, 7 exported
-  Route change stats:     received   rejected   filtered    ignored   accepted
-    Import updates:             40         35          0          4          1
-    Import withdraws:            7          0        ---          0          0
-    Export updates:             81          5         41         21         14
-    Export withdraws:           13          0        ---         34          7
-
-PIPE_NICEBLUE Pipe     master   up     2016-10-24 16:24:28  => TABLE_NICEBLUE
-  Preference:     70
-  Input filter:   (unnamed)
-  Output filter:  (unnamed)
-  Routes:         3 imported, 8 exported
-  Route change stats:     received   rejected   filtered    ignored   accepted
-    Import updates:             73         58          0         12          3
-    Import withdraws:           13          0        ---          0          0
-    Export updates:             81         15          8         37         21
-    Export withdraws:           13          0        ---          4         13
-
-PIPE_BBBELL Pipe     master   up     2016-10-24 16:24:28  => TABLE_BBBELL
-  Preference:     70
-  Input filter:   (unnamed)
-  Output filter:  (unnamed)
-  Routes:         7 imported, 8 exported
-  Route change stats:     received   rejected   filtered    ignored   accepted
-    Import updates:             84         46          3         21         14
-    Import withdraws:           13          0        ---          2          7
-    Export updates:             81         35          0         32         14
-    Export withdraws:           13          0        ---          0          6
-
-DIGISAT  BGP      TABLE_DIGISAT up     2016-10-24 16:26:26  Established   
-  Description:    digisat
+DIG  BGP      TABLE_DIG up     2016-10-24 16:26:26  Established
+  Description:    dig
   Preference:     100
   Input filter:   ACCEPT
   Output filter:  ACCEPT
@@ -90,8 +35,8 @@ DIGISAT  BGP      TABLE_DIGISAT up     2016-10-24 16:26:26  Established
     Hold timer:       134/180
     Keepalive timer:  18/60
 
-EQUATION BGP      TABLE_EQUATION up     2016-10-26 17:13:08  Established   
-  Description:    equation
+EQ BGP      TABLE_EQ up     2016-10-26 17:13:08  Established
+  Description:    eq
   Preference:     100
   Input filter:   ACCEPT
   Output filter:  ACCEPT
@@ -114,8 +59,8 @@ EQUATION BGP      TABLE_EQUATION up     2016-10-26 17:13:08  Established
     Hold timer:       108/180
     Keepalive timer:  4/60
 
-OXYMIUM  BGP      TABLE_OXYMIUM up     2016-10-24 16:26:24  Established   
-  Description:    oxymium
+OX  BGP      TABLE_OX up     2016-10-24 16:26:24  Established
+  Description:    ox
   Preference:     100
   Input filter:   ACCEPT
   Output filter:  ACCEPT
@@ -138,8 +83,8 @@ OXYMIUM  BGP      TABLE_OXYMIUM up     2016-10-24 16:26:24  Established
     Hold timer:       140/180
     Keepalive timer:  9/60
 
-NICEBLUE BGP      TABLE_NICEBLUE up     2016-10-24 16:26:22  Established   
-  Description:    niceblue
+NIC BGP      TABLE_NIC up     2016-10-24 16:26:22  Established
+  Description:    nic
   Preference:     100
   Input filter:   ACCEPT
   Output filter:  ACCEPT
@@ -162,8 +107,8 @@ NICEBLUE BGP      TABLE_NICEBLUE up     2016-10-24 16:26:22  Established
     Hold timer:       142/180
     Keepalive timer:  2/60
 
-BBBELL   BGP      TABLE_BBBELL up     2016-10-24 16:42:21  Established   
-  Description:    bbbell
+BB   BGP      TABLE_BB up     2016-10-24 16:42:21  Established
+  Description:    bb
   Preference:     100
   Input filter:   ACCEPT
   Output filter:  ACCEPT
@@ -185,4 +130,3 @@ BBBELL   BGP      TABLE_BBBELL up     2016-10-24 16:42:21  Established
     Route limit:      8/1000
     Hold timer:       157/180
     Keepalive timer:  26/60
-

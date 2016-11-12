@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/main.css">
+</head>
+<body>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand no-padding" href="#">
+                <img class="img-logo" alt="logo-topix   " src="/static/img/logo-topix.png">
+            </a>
+        </div>
+    </div>
+</nav>
+<div class="container">
+    <h2 class="text-center margin-bottom-20">
+        Bird Configurator
+    </h2>
+    <form class="form-horizontal" id="myForm">
+
+        <span class="col-md-6 col-md-offset-3">
+
+        <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+            <div class="col-sm-10">
+                <input type="password" data-validation="required" name="secret" class="form-control" id="inputPassword3" placeholder="Password">
+            </div>
+        </div>
+        </span>
+        <span class="col-md-6">
+            <div class="text-center margin-botton-20 margin-top-20">
+                <strong>IPv4 Section</strong>
+            </div>
+        <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">AS</label>
+            <div class="col-sm-10">
+                <input type="text" name="ipv4_as" class="form-control" id="inputEmail3" placeholder="Autonomous System">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">Name</label>
+            <div class="col-sm-10">
+                <input type="text" name="ipv4_name" class="form-control" id="inputEmail3" placeholder="Name">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">Description</label>
+            <div class="col-sm-10">
+                <input type="text" name="ipv4_des" class="form-control" id="inputEmail3" placeholder="Description (max 15 chars)">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">IP</label>
+            <div class="col-sm-10">
+                <input type="text" name="ipv4_ip" class="form-control" id="inputEmail3" placeholder="IP on TOP-IX Vlan 4">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">IXType</label>
+            <div class="col-sm-10">
+                <select class="form-control" name="ipv4_ixtype">
+                  <option>topix</option>
+                  <option>vsix</option>
+                  <option>franceix</option>
+                  <option>lyonix</option>
+                  <option>cdn</option>
+                  <option>nocdn</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">ASExport</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="ipv4_asexport" id="inputEmail3" placeholder="In case of 32-bit AS, place private AS">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">Max Pref</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="ipv4_maxpref" id="inputEmail3" placeholder="Max number of prefix">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">Custom command</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="ipv4_custom_command" id="inputEmail3" placeholder="Custom command (es. multihop 255)">
+            </div>
+        </div>
+        </span>
+        <span class="col-md-6">
+            <div class="text-center margin-botton-20 margin-top-20">
+                <strong>IPv6 Section</strong>
+            </div>
+        <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">AS</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="ipv6_as" id="inputEmail3" placeholder="Autonomous System">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">Name</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="ipv6_name" id="inputEmail3" placeholder="Name">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">Description</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputEmail3" name="ipv6_des" placeholder="Description (max 15 chars)">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">IPv6</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputEmail3" name="ipv6_ip" placeholder="IP on TOP-IX Vlan 4">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">IXType</label>
+            <div class="col-sm-10">
+                <select class="form-control" name="ipv6_ixtype">
+                  <option>topix</option>
+                  <option>vsix</option>
+                  <option>franceix</option>
+                  <option>lyonix</option>
+                  <option>cdn</option>
+                  <option>nocdn</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">ASExport</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="ipv6_asexport" id="inputEmail3" placeholder="In case of 32-bit AS, place private AS">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">Max Pref</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="ipv6_maxpref" id="inputEmail3" placeholder="Max number of prefix">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">Custom command</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" name="ipv6_custom_command" id="inputEmail3" placeholder="Custom command (es. multihop 255)">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <span class="pull-right">
+
+                <button type="submit" class="btn btn-success">Configure</button>
+                </span>
+            </div>
+        </div>
+        </span>
+
+
+    </form>
+
+</div>
+<script src="/static/js/jquery-2.2.4.min.js"></script>
+<script src="/static/js/jquery.form-validator.min.js"></script>
+<script src="/static/js/main.js"></script>
+
+</body>
+</html>
