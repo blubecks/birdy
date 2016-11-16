@@ -23,22 +23,33 @@ class Bird(object):
             output = subprocess.Popen([self.app['bird_instance'], "show protocols all"], stdout=subprocess.PIPE).communicate()[0]
         return Parser.parse_output_to_sessions(output)
 
-    def configure_new_session(self, data = None):
+    def configure_new_session(self, data= None):
         if not data:
             return False
         try:
-            self._check_params(data)
+            self._check_password(data)
+            if 'ipv4' in data:
+                self._check_params(data['ipv4'])
+                self.configure_ipv4(data['ipv4'])
+            if 'ipv6' in data:
+                self._check_params(data['ipv6'])
+                self.configure_ipv6(data['ipv6'])
         except BirdException as b:
             return {
                 'status': 'error',
                 'message': b.message
             }
         # Write configuration on file
+        print "config ok"
         return {
             'status': 'success',
             'code': 200,
             'message': 'configuration ok!'
         }
+
+    def _check_password(self, data):
+        if 'secret' not in data or data['secret'] != self.app['secret_key']:
+            raise BirdException('The password is wrong!')
 
     def _check_params(self, data):
         rules = {
@@ -48,14 +59,15 @@ class Bird(object):
             "ixtype": [Required, Length(1, maximum=15)],
             "asexport": [Required, Length(1, maximum=15)]
         }
-        if 'secret' not in data or data['secret'] != self.app['secret_key']:
-            raise BirdException('you are unauthorized!')
-
         result = validate(rules, data)
-        if result[0]:
-            return True
-        else:
-            raise BirdException(result[1])
+        if not result[0]:
+            raise BirdException(['{0}  {1}'.format(key, value) for key, value in result[1].iteritems()])
+
+    def configure_ipv4(self, param):
+        pass
+
+    def configure_ipv6(self, param):
+        pass
 
 
 class BirdException(Exception):

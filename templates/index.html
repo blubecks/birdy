@@ -6,6 +6,8 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="/static/css/bootstrap.min.css">
     <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/css/toastr.min.css">
+
 </head>
 <body>
 <nav class="navbar navbar-default">
@@ -33,7 +35,8 @@
         </div>
         </span>
         <span class="col-md-6">
-            <div class="text-center margin-botton-20 margin-top-20">
+            <div class="margin-botton-20 margin-top-20">
+                <input id="checkbox_ipv4" type="checkbox" name="enable_ipv4">
                 <strong>IPv4 Section</strong>
             </div>
         <div class="form-group">
@@ -65,11 +68,11 @@
             <div class="col-sm-10">
                 <select class="form-control" name="ipv4_ixtype">
                   <option>topix</option>
+                  <option>topix-cdn</option>
+                  <option>topix-nocdn</option>
                   <option>vsix</option>
                   <option>franceix</option>
                   <option>lyonix</option>
-                  <option>cdn</option>
-                  <option>nocdn</option>
                 </select>
             </div>
         </div>
@@ -88,12 +91,13 @@
         <div class="form-group">
             <label for="inputEmail3" class="col-sm-2 control-label">Custom command</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="ipv4_custom_command" id="inputEmail3" placeholder="Custom command (es. multihop 255)">
+                <input type="text" class="form-control" name="ipv4_custom-command" id="inputEmail3" placeholder="Custom command (es. multihop 255)">
             </div>
         </div>
         </span>
         <span class="col-md-6">
-            <div class="text-center margin-botton-20 margin-top-20">
+            <div class="margin-botton-20 margin-top-20">
+                <input id="checkbox_ipv6" type="checkbox" name="enable_ipv6">
                 <strong>IPv6 Section</strong>
             </div>
         <div class="form-group">
@@ -125,11 +129,11 @@
             <div class="col-sm-10">
                 <select class="form-control" name="ipv6_ixtype">
                   <option>topix</option>
+                  <option>topix-cdn</option>
+                  <option>topix-nocdn</option>
                   <option>vsix</option>
                   <option>franceix</option>
                   <option>lyonix</option>
-                  <option>cdn</option>
-                  <option>nocdn</option>
                 </select>
             </div>
         </div>
@@ -148,7 +152,7 @@
         <div class="form-group">
             <label for="inputEmail3" class="col-sm-2 control-label">Custom command</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" name="ipv6_custom_command" id="inputEmail3" placeholder="Custom command (es. multihop 255)">
+                <input type="text" class="form-control" name="ipv6_custom-command" id="inputEmail3" placeholder="Custom command (es. multihop 255)">
             </div>
         </div>
         <div class="form-group">
@@ -160,13 +164,12 @@
             </div>
         </div>
         </span>
-
-
     </form>
 
 </div>
 <script src="/static/js/jquery-2.2.4.min.js"></script>
 <script src="/static/js/jquery.form-validator.min.js"></script>
+<script src="/static/js/toastr.min.js"></script>
 <script src="/static/js/main.js"></script>
 
 </body>

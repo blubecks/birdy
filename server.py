@@ -20,7 +20,13 @@ def get_single_session(session_id):
 
 @app.route("/api/configure/session", methods=['POST'])
 def add_config():
-    data = request.data
+    try:
+        data = request.data
+    except ValueError as ve:
+        return {
+                'status': 'error',
+                'message': ve.message
+            }
     data_dict = json.loads(data)
     return jsonify(bird.configure_new_session(data_dict))
 
