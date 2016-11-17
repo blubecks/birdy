@@ -1,6 +1,7 @@
 import subprocess, os
 from Parser.parser import Parser
 from validator import Required, Pattern, validate, Length
+from datetime import datetime
 
 
 class Bird(object):
@@ -83,6 +84,8 @@ class Bird(object):
         """
         configuration = ['  {0}:  {1}'.format(key, value) for key, value in param.iteritems()]
         configuration = "\n".join(configuration)
+        now = datetime.now()
+        configuration += "\n# insert_date: {0}\n\n".format(now.strftime("%Y-%m-%d %H:%M"))
         configuration = list(configuration)
         configuration[0] = '-'
         with open(self.app['bird_config_file'], "a") as myfile:
@@ -96,11 +99,11 @@ class Bird(object):
         """
         configuration = ['  {0}:  {1}'.format(key, value) for key, value in param.iteritems()]
         configuration = "\n".join(configuration)
-        asimport = '\n  import: AS{0}\n\n'.format(param['as'])
-        configuration += asimport
-        configuration = list(configuration)[0]
+        now = datetime.now()
+        configuration += "\n# insert_date: {0}\n\n".format(now.strftime("%Y-%m-%d %H:%M"))
+        configuration = list(configuration)
         configuration[0] = '-'
-        with open(self.app['bird_config_file_ipv6'], "a") as myfile:
+        with open(self.app['bird_config_file'], "a") as myfile:
             myfile.write("".join(configuration))
 
 
