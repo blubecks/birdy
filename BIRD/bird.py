@@ -11,7 +11,8 @@ class Bird(object):
             'bird_config_file': app.config['BIRD_CONFIG_FILE'],
             'bird_config_file_ipv6': app.config['BIRD_CONFIG_FILE_IPV6'],
             'secret_key': app.config['SECRET_KEY'],
-            'debug': app.config['DEBUG']
+            'debug': app.config['DEBUG'],
+            'bird_update_script': app.config['BIRD_UPDATE_SCRIPT']
         }
 
     def all_bgp_session(self):
@@ -23,7 +24,7 @@ class Bird(object):
             output = subprocess.Popen([self.app['bird_instance'], "show protocols all"], stdout=subprocess.PIPE).communicate()[0]
         return Parser.parse_output_to_sessions(output)
 
-    def configure_new_session(self, data= None):
+    def configure_new_session(self, data=None):
         if not data:
             return False
         try:
@@ -39,8 +40,7 @@ class Bird(object):
                 'status': 'error',
                 'message': b.message
             }
-        # run script bird_update.sh
-        print "config ok"
+        subprocess.call(self.app['bird_update_script'], shell=True)
         return {
             'status': 'success',
             'code': 200,

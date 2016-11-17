@@ -54,9 +54,9 @@ $(document).ready(function(){
                 });
             }else{
                 toastr.success(data.message)
-                // setTimeout(function () {
-                //     location.reload();
-                // },2000)
+                setTimeout(function () {
+                    location.reload();
+                },2000)
             }
         });
         posting.fail(function(err) {
