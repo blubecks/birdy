@@ -7,4 +7,5 @@ def deploy():
      with cd('/root/work/birdy'):
         run('git checkout .')
         run('git pull')
+        run('pip install -r requirements.txt')
         run('service birdy restart')
