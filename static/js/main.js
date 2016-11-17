@@ -44,7 +44,9 @@ $(document).ready(function(){
             data: JSON.stringify(values),
             headers: {'Content-Type': 'application/json'}
         });
+        $.showLoading();
         posting.done(function(data) {
+            $.hideLoading();
             if (data.status == 'error'){
                 if( typeof data.message === 'string' ) {
                     data.message = [ data.message ];
