@@ -9,7 +9,7 @@ class Bird(object):
             'bird_instance': app.config['BIRDC_INSTANCE'],
             'bird_v6_instance': app.config['BIRDC6_INSTANCE'],
             'bird_config_file': app.config['BIRD_CONFIG_FILE'],
-            'bird_config_file_ipv6':app.config['BIRD_CONFIG_FILE_IPV6'],
+            'bird_config_file_ipv6': app.config['BIRD_CONFIG_FILE_IPV6'],
             'secret_key': app.config['SECRET_KEY'],
             'debug': app.config['DEBUG']
         }
@@ -39,7 +39,7 @@ class Bird(object):
                 'status': 'error',
                 'message': b.message
             }
-        # Write configuration on file
+        # run script bird_update.sh
         print "config ok"
         return {
             'status': 'success',
@@ -48,37 +48,61 @@ class Bird(object):
         }
 
     def _check_password(self, data):
+        """
+        Check if the password which has been sent is correct
+        :param data: the whole post request
+        :return: nothing, raise an exception in case of negative matching
+        """
         if 'secret' not in data or data['secret'] != self.app['secret_key']:
             raise BirdException('The password is wrong!')
 
-    def _check_params(self, data):
+    @staticmethod
+    def _check_params(data):
+        """
+        Check if all the required parameters have been sent
+        :param data: just a part of the post request, ipv4 or ipv6
+        :return: nothing, raise an exception in case of missing value
+        """
         rules = {
             "as": [Required, Length(1, maximum=15)],
             "name": [Required, Length(1, maximum=15)],
             "ip": [Required, Length(1, maximum=15)],
             "ixtype": [Required, Length(1, maximum=15)],
-            "asexport": [Required, Length(1, maximum=15)]
+            "asexport": [Required, Length(1, maximum=15)],
+            "import": [Required, Length(1, maximum=15)]
         }
         result = validate(rules, data)
         if not result[0]:
             raise BirdException(['{0}  {1}'.format(key, value) for key, value in result[1].iteritems()])
 
     def configure_ipv4(self, param):
-        pass
+        """
+        Prepare the string for Bird's config file, then append the config
+        :param param: params for ipv4 configuration
+        :return: nothing, raise an exception in case of failure
+        """
+        configuration = ['  {0}:  {1}'.format(key, value) for key, value in param.iteritems()]
+        configuration = "\n".join(configuration)
+        configuration = list(configuration)
+        configuration[0] = '-'
+        with open(self.app['bird_config_file'], "a") as myfile:
+            myfile.write("".join(configuration))
 
     def configure_ipv6(self, param):
-        pass
+        """
+        Prepare the string for Bird's config file, then append the config
+        :param param: params for ipv6 configuration
+        :return: nothing, raise an exception in case of failure
+        """
+        configuration = ['  {0}:  {1}'.format(key, value) for key, value in param.iteritems()]
+        configuration = "\n".join(configuration)
+        asimport = '\n  import: AS{0}\n\n'.format(param['as'])
+        configuration += asimport
+        configuration = list(configuration)[0]
+        configuration[0] = '-'
+        with open(self.app['bird_config_file_ipv6'], "a") as myfile:
+            myfile.write("".join(configuration))
 
 
 class BirdException(Exception):
     pass
-
-'''
-as
-nome
-ip
-ixtype
-asexport
-maxpref
-custom_commands
-'''

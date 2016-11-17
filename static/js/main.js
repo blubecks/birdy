@@ -35,12 +35,9 @@ $(document).ready(function(){
                     }
                     values[res[0]][res[1]] = $(this).val();
                 }
-
             }
-
         });
         values['secret'] = $("#myForm :input[name='secret']").val();
-        console.log(values);
         var posting = $.ajax({
             type: "POST",
             url: '/api/configure/session',
@@ -53,24 +50,19 @@ $(document).ready(function(){
                     data.message = [ data.message ];
                 }
                 data.message.forEach(function (error) {
-                    toastr.error(error);
+                    toastr.warning(error);
                 });
-
             }else{
-                console.log(data);
                 toastr.success(data.message)
+                // setTimeout(function () {
+                //     location.reload();
+                // },2000)
             }
-
         });
         posting.fail(function(err) {
-            console.log( "server error" );
-            console.log( err );
-        });
-        posting.always(function() {
-            console.log( "finished" );
+            toastr.error("Server Error, please check")
         });
         return false;
-
     });
 });
 
