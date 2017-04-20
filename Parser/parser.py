@@ -1,4 +1,5 @@
 import re
+from IPy import IP
 
 
 class Parser:
@@ -29,6 +30,11 @@ class Parser:
             object_parsed = re.match(r'^\s+Neighbor address:\s+([^\s]+)\s*$', line, re.M | re.I)
             if object_parsed:
                 s['bgp_info']['neighbor_address'] = object_parsed.group(1)
+                try:
+                    IP(s['bgp_info']['neighbor_address'])
+                    s['protocol'] = 'ipv4'
+                except:
+                    s['protocol'] = 'ipv6'
                 continue
             object_parsed = re.match(r'^\s+Neighbor AS:\s+([\d]+)\s*$', line, re.M | re.I)
             if object_parsed:
