@@ -22,6 +22,7 @@ def get_all_session():
 def get_all_session():
     return jsonify({"sessions": bird.all_bgp_session('ipv6')})
 
+
 @app.route("/api/session/<int:session_id>", methods=['GET'])
 def get_single_session(session_id):
     abort(404)
@@ -50,4 +51,4 @@ def send_static(path):
     return send_from_directory('static', path)
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0')
+    app.run(host=app.config['SERVER_HOST'])
