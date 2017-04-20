@@ -13,6 +13,15 @@ def get_all_session():
     return jsonify({"sessions": bird.all_bgp_session()})
 
 
+@app.route("/api/session/ipv4", methods=['GET'])
+def get_all_session():
+    return jsonify({"sessions": bird.all_bgp_session('ipv4')})
+
+
+@app.route("/api/session/ipv6", methods=['GET'])
+def get_all_session():
+    return jsonify({"sessions": bird.all_bgp_session('ipv6')})
+
 @app.route("/api/session/<int:session_id>", methods=['GET'])
 def get_single_session(session_id):
     abort(404)
