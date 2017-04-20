@@ -14,12 +14,12 @@ def get_all_session():
 
 
 @app.route("/api/session/ipv4", methods=['GET'])
-def get_all_session():
+def get_ipv4_session():
     return jsonify({"sessions": bird.all_bgp_session('ipv4')})
 
 
 @app.route("/api/session/ipv6", methods=['GET'])
-def get_all_session():
+def get_ipv6_session():
     return jsonify({"sessions": bird.all_bgp_session('ipv6')})
 
 
