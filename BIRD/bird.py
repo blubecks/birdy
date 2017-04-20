@@ -22,7 +22,7 @@ class Bird(object):
             f = open(fake_data, 'r')
             output = f.read()
         else:
-            if type:
+            if protocol:
                 output = subprocess.Popen([self.app['bird_instance_'+protocol], "show protocols all"],
                                           stdout=subprocess.PIPE).communicate()[0]
             else:
