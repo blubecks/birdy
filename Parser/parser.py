@@ -8,6 +8,13 @@ class Parser:
         pass
 
     @staticmethod
+    def parse_output_to_routes_count(output=None):
+        for line in output.split('\n'):
+            object_parsed = re.match(r'^(\d+) of (\d+).*$', line, re.M | re.I)
+            if object_parsed:
+                return object_parsed.group(1)
+
+    @staticmethod
     def parse_output_to_sessions(output=None):
         sessions = []
 

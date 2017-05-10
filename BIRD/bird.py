@@ -1,7 +1,15 @@
-import subprocess, os
+import subprocess
+import os
 from Parser.parser import Parser
 from validator import Required, Pattern, validate, Length
 from datetime import datetime
+
+import logging
+
+logging.basicConfig(
+  format='[%(asctime)s] %(message)s',
+  filename='./logger.log',
+  level=logging.INFO)
 
 
 class Bird(object):
@@ -16,6 +24,25 @@ class Bird(object):
             'bird_update_script': app.config['BIRD_UPDATE_SCRIPT']
         }
 
+    def enrich_session(self, sessions=None):
+        if sessions:
+            for session in sessions:
+                output = subprocess.Popen(
+                  [
+                    self.app['bird_instance_'+session['protocol']],
+                    "sh route export {} count".format(session['name'])
+                    ],
+                  stdout=subprocess.PIPE).communicate()[0]
+                session['exported_routes'] = Parser.parse_output_to_routes_count(output)
+                output = subprocess.Popen(
+                  [
+                    self.app['bird_instance_'+session['protocol']],
+                    "sh route protocol {} count".format(session['name'])
+                    ],
+                  stdout=subprocess.PIPE).communicate()[0]
+                session['announced_routes'] = Parser.parse_output_to_routes_count(output)
+        return sessions
+
     def all_bgp_session(self, protocol=None):
         if self.app['debug']:
             fake_data = os.path.join(os.path.dirname(__file__), 'summary.txt')
@@ -23,13 +50,16 @@ class Bird(object):
             output = f.read()
         else:
             if protocol:
-                output = subprocess.Popen([self.app['bird_instance_'+protocol], "show protocols all"],
-                                          stdout=subprocess.PIPE).communicate()[0]
+                output = subprocess.Popen(
+                  [self.app['bird_instance_'+protocol], "show protocols all"],
+                  stdout=subprocess.PIPE).communicate()[0]
             else:
-                output = subprocess.Popen([self.app['bird_instance_ipv4'], "show protocols all"],
-                                          stdout=subprocess.PIPE).communicate()[0]
-                output += subprocess.Popen([self.app['bird_instance_ipv6'], "show protocols all"],
-                                           stdout=subprocess.PIPE).communicate()[0]
+                output = subprocess.Popen(
+                  [self.app['bird_instance_ipv4'], "show protocols all"],
+                  stdout=subprocess.PIPE).communicate()[0]
+                output += subprocess.Popen(
+                  [self.app['bird_instance_ipv6'], "show protocols all"],
+                  stdout=subprocess.PIPE).communicate()[0]
         return Parser.parse_output_to_sessions(output)
 
     def configure_new_session(self, data=None):

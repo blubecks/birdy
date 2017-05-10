@@ -1,7 +1,9 @@
 from flask import Flask, jsonify, abort, request, render_template, send_from_directory
 from BIRD.bird import Bird
 import json
+import logging
 
+logging.basicConfig(format='[%(asctime)s] %(message)s', filename='./logger.log', level=logging.INFO)
 
 app = Flask(__name__)
 app.config.from_pyfile('birdy.cfg')
@@ -21,6 +23,13 @@ def get_ipv4_session():
 @app.route("/api/session/ipv6", methods=['GET'])
 def get_ipv6_session():
     return jsonify({"sessions": bird.all_bgp_session('ipv6')})
+
+
+@app.route("/api/session/stats", methods=['GET'])
+def get_all_session_stats():
+    sessions_without_routes = bird.all_bgp_session()
+    sessions = bird.enrich_session(sessions_without_routes)
+    return jsonify({"sessions": sessions})
 
 
 @app.route("/api/session/<int:session_id>", methods=['GET'])
