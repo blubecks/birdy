@@ -3,6 +3,7 @@ import os
 from Parser.parser import Parser
 from validator import Required, Pattern, validate, Length
 from datetime import datetime
+import psutil
 
 import logging
 
@@ -23,6 +24,24 @@ class Bird(object):
             'debug': app.config['DEBUG'],
             'bird_update_script': app.config['BIRD_UPDATE_SCRIPT']
         }
+
+    @staticmethod
+    def get_daemons_status():
+        status = {}
+        for proc in psutil.process_iter():
+            pinfo = proc.as_dict(attrs=['pid', 'name'])
+            if "bird" == pinfo['name']:
+                status['ipv4'] = 'ok'
+            elif "bird6" == pinfo['name']:
+                status['ipv6'] = 'ok'
+            else:
+                pass
+        if 'ipv4' not in status:
+            status['ipv4'] = 'ko'
+        if 'ipv6' not in status:
+            status['ipv6'] = 'ko'
+
+        return status
 
     def enrich_session(self, sessions=None):
         if sessions:

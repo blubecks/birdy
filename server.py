@@ -12,7 +12,8 @@ bird = Bird(app)
 
 @app.route("/api/session/all", methods=['GET'])
 def get_all_session():
-    return jsonify({"sessions": bird.all_bgp_session()})
+    status = Bird.get_daemons_status()
+    return jsonify({"status": status,"sessions": bird.all_bgp_session()})
 
 
 @app.route("/api/session/ipv4", methods=['GET'])
